@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -71,6 +71,41 @@
         <item name="fontFamily">@font/ibm_plex_serif_regular</item>
         <item name="android:fontFamily">@font/ibm_plex_serif_regular</item>
         <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="Article.Title" parent="TextAppearance.MdcTypographyStyles.Headline5">
+        <item name="android:textColor">@color/whiteText</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+    <style name="Article.Byline" parent="TextAppearance.MdcTypographyStyles.Body1">
+        <item name="android:textColor">@color/whiteText</item>
+        <item name="fontFamily">@font/pt_sans_narrow</item>
+        <item name="android:fontFamily">@font/pt_sans_narrow</item>
+        <item name="android:textAlignment">textEnd</item>
+    </style>
+    
+    <style name="Article.Date" parent="TextAppearance.MdcTypographyStyles.Body1">
+        <item name="android:textColor">@color/whiteText</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="Article.Summary" parent="TextAppearance.MdcTypographyStyles.Body1">
+        <item name="android:textColor">@color/whiteText</item>
+    </style>
+
+    <style name="Source">
+
+    </style>
+
+    <style name="Source.Title" parent="TextAppearance.MdcTypographyStyles.Headline4">
+        <item name="android:textColor">@color/colorSecondaryDark</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Source.Description" parent="TextAppearance.MdcTypographyStyles.Body1">
+        <item name="android:textColor">@color/colorSecondaryDark</item>
+        <item name="android:textStyle">italic</item>
     </style>
 
 </resources>
