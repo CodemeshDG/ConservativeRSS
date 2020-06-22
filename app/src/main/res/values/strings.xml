@@ -1,3 +1,192 @@
 <resources>
-    <string name="app_name">ConservativeRSS</string>
+    <string name="app_name">Conservative RSS</string>
+    <string name="logo">Conservative RSS logo</string>
+
+    <string name="navigation_drawer_open">Open source selection drawer</string>
+    <string name="navigation_drawer_close">Close source selection drawer</string>
+
+    <string name="menu_customize_source_list">Customize source list</string>
+    <string name="menu_customize_news_feed">Customize news feed</string>
+    <string name="menu_refresh_feed">Refresh feed</string>
+    <string name="menu_send_feedback">Send feedback</string>
+    <string name="menu_about_app">About this app</string>
+
+    <string name="dialog_about_title">About ConservativeRSS</string>
+    <string name="dialog_about_content">Created by Dominick Gregory.</string>
+
+    <string name="setup_sources_header_title">Select Your Sources</string>
+    <string name="setup_sources_header_content">Please scroll and select which sources to include in
+        your left-side menu. You can change your selections at any time through the right-side
+        settings menu.</string>
+    <string name="setup_button_set_sources">Use these as my sources</string>
+
+    <string name="setup_feed_header_title">Customize Your Feed Appearance</string>
+    <string name="setup_feed_header_content">You can customize the appearance of articles in your
+        feed. An example is displayed below based upon your selections. You can change your
+        selections at any time through the right-side settings menu.</string>
+    <string name="setup_feed_header_content_landscape">You can customize the appearance of articles
+        in your feed. An example is displayed to the right based upon your selections. You can
+        change your selections at any time through the right-side settings menu.</string>
+    <string name="setup_button_apply_feed">Use these settings</string>
+    <string name="setup_feed_example_headline_1">Town Council Passes New Property Tax Cuts</string>
+    <string name="setup_feed_example_byline_1">By Joe Byline</string>
+    <string name="setup_feed_example_date_1">Published Fri, 18 Dec 2020 16:53:34 GMT</string>
+    <string name="setup_feed_example_summary_1">The Anytown Town Council has lowered property taxes
+        in a 7-1 vote. Homeowners can expect to see a reduction up to 6%. Councilwoman Sheila Greene
+        thanked residents and local organizations that advocated for the tax cuts to pass.</string>
+    <string name="setup_feed_example_headline_2">New Welding Plant Opens in South End</string>
+    <string name="setup_feed_example_byline_2">By Jane Byline</string>
+    <string name="setup_feed_example_date_2">Published Fri, 18 Dec 2020 16:30:11 GMT</string>
+    <string name="setup_feed_example_summary_2">The long-awaited Harrison Welding Plant opened its
+        doors for production today. The South End plant has created over 100 jobs for the
+        community. A ribbon-cutting ceremony for the plant was attended by Anytown\'s mayor.</string>
+    <string name="setup_feed_example_headline_3">Family Holds Charity Fundraiser for
+        Veterans</string>
+    <string name="setup_feed_example_byline_3">By Joe Byline</string>
+    <string name="setup_feed_example_date_3">Published Fri, 18 Dec 2020 16:08:17 GMT</string>
+    <string name="setup_feed_example_summary_3">A local Anytown family held a charity event for
+        veterans, raising over $10,000. The event, organized by the Wilkerson family and held at
+        the Anytown High School auditorium, was attended by several hundred people from the
+        community.</string>
+    <string name="setup_feed_example_headline_4">Snow Next Week? The Latest Weather Update</string>
+    <string name="setup_feed_example_byline_4">By Storm Freeze</string>
+    <string name="setup_feed_example_date_4">Published Fri, 18 Dec 2020 15:47:22 GMT</string>
+    <string name="setup_feed_example_summary_4">Weather update for Friday, December 18th, 2020: the
+        Doppler 9000X+ is showing the possibility of snow Monday evening, lasting through Tuesday
+        until the early morning hours of Wednesday.</string>
+
+    <string name="dialog_feedback_title">Send Feedback?</string>
+    <string name="dialog_feedback_content">Something not working correctly? Want to see a source
+        included in this app? Have an idea for improvements? Enjoy using this app? I appreciate all
+        feedback!\n\nPlease note that I cannot control the type and quantity of news items that
+        appear for a source. The source\'s RSS feed determines which news items, and how many of
+        them, are available at a given time.</string>
+    <string name="dialog_feedback_positive_button">Send Feedback</string>
+
+    <string name="dialog_customize_list_title">Customize Source List</string>
+    <string name="dialog_customize_list_content">Select the sources you want to appear in your list.
+        They will appear in alphabetical order.</string>
+
+    <string name="dialog_customize_feed_title">Customize News Feed</string>
+    <string name="dialog_customize_feed_content">These options will affect the look of your news
+        feed.</string>
+    <string name="dialog_customize_feed_option_summary">Show article summaries</string>
+    <string name="dialog_customize_feed_option_image">Show images when available</string>
+
+    <string name="dialog_positive_button_apply">Apply</string>
+    <string name="dialog_positive_button_ok">OK</string>
+    <string name="dialog_negative_button">Cancel</string>
+
+    <string name="snackbar_load_error">Error retrieving articles. Please check your internet
+        connection.</string>
+    <string name="snackbar_button_retry">Retry</string>
+
+    <string name="source_american_greatness_name">American Greatness</string>
+    <string name="source_american_greatness_description">American Greatness is the leading voice of
+        the next generation of American Conservatism.</string>
+    <string name="source_american_thinker_name">American Thinker</string>
+    <string name="source_american_thinker_description">American Thinker is a daily internet
+        publication devoted to the thoughtful exploration of issues of importance to
+        Americans.</string>
+    <string name="source_babylon_bee_name">The Babylon Bee</string>
+    <string name="source_babylon_bee_description">Fake news you can trust.</string>
+    <string name="source_bearing_arms_name">Bearing Arms</string>
+    <string name="source_bearing_arms_description">Saving Liberty and Lives</string>
+    <string name="source_brietbart_name">Breitbart News Network</string>
+    <string name="source_brietbart_description">News, commentary, and destruction of the
+        political/media establishment.</string>
+    <string name="source_campus_reform_name">Campus Reform</string>
+    <string name="source_campus_reform_description">Exposing liberal bias on America\'s college
+        campuses.</string>
+    <string name="source_daily_caller_name">The Daily Caller</string>
+    <string name="source_daily_caller_description">The Daily Caller features breaking news, opinion,
+        research, and entertainment 24 hours a day.</string>
+    <string name="source_daily_signal_name">The Daily Signal</string>
+    <string name="source_daily_signal_description">Policy News, Conservative Analysis and
+        Opinion</string>
+    <string name="source_daily_wire_name">The Daily Wire</string>
+    <string name="source_daily_wire_description">The Daily Wire is a politically conservative news
+        and opinion website featuring daily podcasts by Matt Andrew Klavan, Michael Knowles, Matt
+        Walsh, and Editor-In-Chief Ben Shapiro.</string>
+    <string name="source_epoch_times_name">The Epoch Times</string>
+    <string name="source_epoch_times_description">Truth &amp; Tradition. Fact Based. Unbiased. Accurate
+        News.</string>
+    <string name="source_federalist_name">The Federalist</string>
+    <string name="source_federalist_description">A web magazine of culture, entertainment, and politics.
+        Be lovers of freedom and anxious for the fray.</string>
+    <string name="source_fox_news_name">Fox News</string>
+    <string name="source_fox_news_description">Breaking news and video. Latest Current News: U.S.,
+        World, Entertainment, Health, Business, Technology, Politics, Sports.</string>
+    <string name="source_gateway_pundit_name">The Gateway Pundit</string>
+    <string name="source_gateway_pundit_description">Where Hope Finally Made a Comeback</string>
+    <string name="source_hill_name">The Hill</string>
+    <string name="source_hill_description">Covering Congress, politics, political campaigns and
+        Capitol Hill.</string>
+    <string name="source_hot_air_name">Hot Air</string>
+    <string name="source_hot_air_description">The world’s first, full-service conservative Internet
+        broadcast network.</string>
+    <string name="source_infowars_name">Infowars</string>
+    <string name="source_infowars_description">Alex Jones\' Infowars: There\'s a war on for your
+        mind!</string>
+    <string name="source_investors_business_daily_name">Investor\'s Business Daily</string>
+    <string name="source_investors_business_daily_description">Investor\'s Business Daily provides
+        exclusive stock lists, investing data, stock market research, education and the latest
+        financial and business news to help investors make more money in the stock market.</string>
+    <string name="source_issues_insights_name">Issues &amp; Insights</string>
+    <string name="source_issues_insights_description">If you want hard-hitting, fact-based
+        commentary and opinion, you\'ve come to the right place. Brought to you by the team behind
+        the former IBD Editorials page.</string>
+    <string name="source_jerusalem_post_name">The Jerusalem Post</string>
+    <string name="source_jerusalem_post_description">Israel &amp; world news from the Jewish
+        state\'s leading website and best-selling English news source.</string>
+    <string name="source_military_times_name">Military Times</string>
+    <string name="source_military_times_description">Your independent voice for everything
+        Military.</string>
+    <string name="source_national_review_name">National Review</string>
+    <string name="source_national_review_description">Conservative News, Opinion, Politics, Policy
+        &amp; Current Events</string>
+    <string name="source_new_york_post_name">New York Post</string>
+    <string name="source_new_york_post_description">Your source for breaking news, news about New
+        York, sports, business, entertainment, opinion, real estate, culture, fashion, and
+        more.</string>
+    <string name="source_news_busters_name">NewsBusters</string>
+    <string name="source_news_busters_description">Exposing and Combating Liberal Media
+        Bias</string>
+    <string name="source_newsmax_name">Newsmax</string>
+    <string name="source_newsmax_description">Conservative News in Politics, Health, Finance &amp;
+        More</string>
+    <string name="source_one_america_news_network_name">One America News Network</string>
+    <string name="source_one_america_news_network_description">Your Nation. Your News.</string>
+    <string name="source_pj_media_name">PJ Media</string>
+    <string name="source_pj_media_description">Politics. Parenting. Lifestyle.</string>
+    <string name="source_reason_foundation_name">Reason Foundation</string>
+    <string name="source_reason_foundation_description">Reason Foundation is a nonprofit dedicated
+        to advancing free minds and free markets.</string>
+    <string name="source_red_state_name">RedState</string>
+    <string name="source_red_state_description">Conservative Blog &amp; Conservative News Source for
+        Right of Center Activists</string>
+    <string name="source_roll_call_name">Roll Call</string>
+    <string name="source_roll_call_description">Covering Capitol Hill Since 1955</string>
+    <string name="source_sky_news_name">Sky News</string>
+    <string name="source_sky_news_description">The Latest News from the UK and Around the
+        World</string>
+    <string name="source_townhall_name">Townhall</string>
+    <string name="source_townhall_description">Breaking Political News and Conservative
+        Analysis</string>
+    <string name="source_world_report_name">U.S. News &amp; World Report</string>
+    <string name="source_world_report_description">Life’s decisions made here since 1933. Breaking
+        news and analysis, consumer advice and the original rankings guide.</string>
+    <string name="source_washington_examiner_name">Washington Examiner</string>
+    <string name="source_washington_examiner_description">Political News and Analysis About
+        Congress, the President and the Federal Government</string>
+    <string name="source_washington_free_beacon_name">The Washington Free Beacon</string>
+    <string name="source_washington_free_beacon_description">Breaking News, Politics, National
+        Security</string>
+    <string name="source_washington_times_name">The Washington Times</string>
+    <string name="source_washington_times_description">Reliable Reporting. The Right
+        Opinion.</string>
+    <string name="source_zero_hedge_name">Zero Hedge</string>
+    <string name="source_zero_hedge_description">On a long enough timeline, the survival rate for
+        everyone drops to zero.</string>
+
 </resources>
