@@ -10,12 +10,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.dommyg.conservativerss.R;
 import com.dommyg.conservativerss.databinding.FragmentArticleListBinding;
+import com.dommyg.conservativerss.viewmodels.ArticleListViewModel;
 
 public class ArticleListFragment extends Fragment {
     private FragmentArticleListBinding binding;
+    private ArticleListViewModel viewModel;
 
     @Nullable
     @Override
@@ -36,11 +40,35 @@ public class ArticleListFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         // Retrieve the ViewModel.
+        viewModel = new ViewModelProvider(this,
+                ViewModelProvider.AndroidViewModelFactory
+                        .getInstance(getActivity().getApplication()))
+                .get(ArticleListViewModel.class);
+
+        subscribeObservers();
     }
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         // Set the interface instance so that this fragment can communicate with other fragments.
+    }
+
+    private void subscribeObservers() {
+        viewModel.getViewState().observe(this, new Observer<ArticleListViewModel.ViewState>() {
+            @Override
+            public void onChanged(ArticleListViewModel.ViewState viewState) {
+                if (viewState != null) {
+                    switch (viewState) {
+                        case SOURCE:
+
+                            break;
+                        case SEARCH:
+
+                            break;
+                    }
+                }
+            }
+        });
     }
 }
