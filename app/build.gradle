@@ -32,7 +32,10 @@ dependencies {
     implementation "androidx.room:room-runtime:2.2.5"
     annotationProcessor "androidx.room:room-compiler:2.2.5"
 
-    // MVVM & Lifecycle
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
+
+    // ModelView & Lifecycle
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.2.0"
 
     // Material Design
