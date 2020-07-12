@@ -1,6 +1,7 @@
 package com.dommyg.conservativerss.fragments;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,16 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.dommyg.conservativerss.R;
 import com.dommyg.conservativerss.databinding.FragmentArticleListBinding;
+import com.dommyg.conservativerss.models.Article;
+import com.dommyg.conservativerss.models.Channel;
+import com.dommyg.conservativerss.models.Rss;
+import com.dommyg.conservativerss.requests.ServiceGenerator;
 import com.dommyg.conservativerss.viewmodels.ArticleListViewModel;
+
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Response;
 
 public class ArticleListFragment extends Fragment {
     private FragmentArticleListBinding binding;
@@ -46,6 +56,7 @@ public class ArticleListFragment extends Fragment {
                 .get(ArticleListViewModel.class);
 
         subscribeObservers();
+        binding.setFragment(this);
     }
 
     @Override
@@ -70,5 +81,33 @@ public class ArticleListFragment extends Fragment {
                 }
             }
         });
+    }
+
+    public void testApiCall() {
+        new TestCallAsync().execute();
+    }
+
+    private static class TestCallAsync extends AsyncTask<Void, Void, Response<Rss>> {
+
+        @Override
+        protected Response<Rss> doInBackground(Void... voids) {
+            try {
+                Call<Rss> rssCall = ServiceGenerator.getRssCall().getRss();
+
+                return rssCall.execute();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Response<Rss> rssResponse) {
+            Rss rss = rssResponse.body();
+            System.out.println(rssResponse.code());
+            for (Article article : rss.getChannel().getArticleList()) {
+                System.out.println(article.getTitle());
+            }
+        }
     }
 }

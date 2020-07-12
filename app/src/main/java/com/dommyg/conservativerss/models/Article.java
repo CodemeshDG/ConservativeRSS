@@ -8,6 +8,11 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Namespace;
+import org.simpleframework.xml.Root;
+
 // TODO: Update this description.
 /**
  * Holds information about each article that appears in the UI for a source. The title, author,
@@ -16,6 +21,7 @@ import androidx.room.PrimaryKey;
  * list.
  */
 @Entity(tableName = "article_table")
+@Root(name = "item", strict = false)
 public class Article implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
@@ -26,21 +32,29 @@ public class Article implements Parcelable {
     private int sourceId;
 
     @ColumnInfo(name = "title")
+    @Element(name = "title", required = false)
     private String title;
 
     @ColumnInfo(name = "author")
+    @Element(name = "creator", required = false)
+//    @Namespace(reference = "http://purl.org/dc/elements/1.1/", prefix = "dc")
     private String author;
 
     @ColumnInfo(name = "date")
+    @Element(name = "pubDate", required = false)
     private String date;
 
     @ColumnInfo(name = "summary")
+    @Element(name = "description", required = false)
     private String summary;
 
     @ColumnInfo(name = "url")
+    @Element(name = "link", required = false)
     private String url;
 
     @ColumnInfo(name = "image")
+    @Element(name = "enclosure", required = false)
+//    @Attribute(name = "url")
     private String image;
 
     public Article() {
