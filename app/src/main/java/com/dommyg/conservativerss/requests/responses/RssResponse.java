@@ -1,75 +1,80 @@
 package com.dommyg.conservativerss.requests.responses;
 
-import java.io.IOException;
+import com.dommyg.conservativerss.models.Article;
 
-import retrofit2.Response;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
 
-/**
- * A generic class which reads raw responses from Retrofit and assigns it one of three possible
- * statuses: success, error, or empty.
- */
-public class RssResponse<T> {
+import java.util.List;
 
-    public RssResponse<T> create(Throwable error) {
-        return new RssErrorResponse<>(!error.getMessage().equals("") ?
-                error.getMessage() : "Unknown error\nCheck network connection");
+@Root(name = "rss", strict = false)
+public class RssResponse {
+
+    @Element(name = "channel", required = false)
+    private Channel channel;
+
+    public RssResponse() {
+
     }
 
-    public RssResponse<T> create(Response<T> response) {
-        if (response.isSuccessful()) {
-            T body = response.body();
-
-            if (body == null || response.code() == 204) {
-                return new RssEmptyResponse<>();
-            } else {
-                return new RssSuccessResponse<>(body);
-            }
-        } else {
-            String errorMessage = "";
-            try {
-                errorMessage = response.errorBody().string();
-            } catch (IOException e) {
-                e.printStackTrace();
-                errorMessage = response.message();
-            }
-            return new RssErrorResponse<>(errorMessage);
-        }
+    public Channel getChannel() {
+        return channel;
     }
 
-    /**
-     * Used for handling responses which were successful.
-     */
-    public class RssSuccessResponse<T> extends RssResponse<T> {
-        private T body;
-
-        RssSuccessResponse(T body) {
-            this.body = body;
-        }
-
-        public T getBody() {
-            return body;
-        }
+    public void setChannel(Channel channel) {
+        this.channel = channel;
     }
 
-    /**
-     * Used for handling responses which resulted in an error.
-     */
-    public class RssErrorResponse<T> extends RssResponse<T> {
-        private String errorMessage;
+    @Root(strict = false)
+    public static class Channel {
 
-        RssErrorResponse(String errorMessage) {
-            this.errorMessage = errorMessage;
+        @ElementList(inline = true, required = false)
+        private List<Article> articleList;
+
+        @Element(name = "title", required = false)
+        private String title;
+
+        @Element(name = "link", required = false)
+        private String homepageUrl;
+
+        @Element(name = "description", required = false)
+        private String description;
+
+        public Channel() {
+
         }
 
-        public String getErrorMessage() {
-            return errorMessage;
+        public List<Article> getArticleList() {
+            return articleList;
         }
-    }
 
-    /**
-     * Used for handling empty responses.
-     */
-    public class RssEmptyResponse<T> extends RssResponse<T> {
+        public void setArticleList(List<Article> articleList) {
+            this.articleList = articleList;
+        }
 
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getHomepageUrl() {
+            return homepageUrl;
+        }
+
+        public void setHomepageUrl(String homepageUrl) {
+            this.homepageUrl = homepageUrl;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
     }
 }

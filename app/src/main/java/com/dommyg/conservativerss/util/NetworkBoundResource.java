@@ -8,7 +8,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.Observer;
 
-import com.dommyg.conservativerss.requests.responses.RssResponse;
+import com.dommyg.conservativerss.requests.responses.NetworkResponse;
 
 /**
  * Generic class for handling network requests.
@@ -81,17 +81,17 @@ public abstract class NetworkBoundResource<CacheObject, RequestObject> {
         });
 
         // Get the LiveData object from the network request.
-        final LiveData<RssResponse<RequestObject>> rssResponse = createCall();
+        final LiveData<NetworkResponse<RequestObject>> rssResponse = createCall();
 
-        results.addSource(rssResponse, new Observer<RssResponse<RequestObject>>() {
+        results.addSource(rssResponse, new Observer<NetworkResponse<RequestObject>>() {
             @Override
-            public void onChanged(final RssResponse<RequestObject> requestObjectRssResponse) {
+            public void onChanged(final NetworkResponse<RequestObject> requestObjectNetworkResponse) {
                 // Remove the data sources so that, depending on the result, the data can be
                 // properly handled.
                 results.removeSource(dbSource);
                 results.removeSource(rssResponse);
 
-                if (requestObjectRssResponse instanceof RssResponse.RssSuccessResponse) {
+                if (requestObjectNetworkResponse instanceof NetworkResponse.NetworkSuccessResponse) {
                     // Response was successful.
                     appExecutors.getDiskIO().execute(new Runnable() {
                         @Override
@@ -99,7 +99,7 @@ public abstract class NetworkBoundResource<CacheObject, RequestObject> {
                             // Save the response to the local database using the background thread.
                             saveCallResult(
                                     (RequestObject) processResponse(
-                                    (RssResponse.RssSuccessResponse) requestObjectRssResponse)
+                                    (NetworkResponse.NetworkSuccessResponse) requestObjectNetworkResponse)
                             );
 
                             appExecutors.getMainThreadExecutor().execute(new Runnable() {
@@ -116,7 +116,7 @@ public abstract class NetworkBoundResource<CacheObject, RequestObject> {
                             });
                         }
                     });
-                } else if (requestObjectRssResponse instanceof RssResponse.RssEmptyResponse) {
+                } else if (requestObjectNetworkResponse instanceof NetworkResponse.NetworkEmptyResponse) {
                     // Response was empty.
                     appExecutors.getMainThreadExecutor().execute(new Runnable() {
                         @Override
@@ -130,14 +130,14 @@ public abstract class NetworkBoundResource<CacheObject, RequestObject> {
                             });
                         }
                     });
-                } else if (requestObjectRssResponse instanceof RssResponse.RssErrorResponse) {
+                } else if (requestObjectNetworkResponse instanceof NetworkResponse.NetworkErrorResponse) {
                     // Response resulted in an error.
                     results.addSource(dbSource, new Observer<CacheObject>() {
                         @Override
                         public void onChanged(CacheObject cacheObject) {
                             // Use the cache data and pass the error message.
                             setValue(Resource.error(
-                                    ((RssResponse.RssErrorResponse) requestObjectRssResponse)
+                                    ((NetworkResponse.NetworkErrorResponse) requestObjectNetworkResponse)
                                             .getErrorMessage(), cacheObject
                                     )
                             );
@@ -151,7 +151,7 @@ public abstract class NetworkBoundResource<CacheObject, RequestObject> {
     /**
      * Retrieves the body (JSON) from the network response.
      */
-    private CacheObject processResponse(RssResponse.RssSuccessResponse response) {
+    private CacheObject processResponse(NetworkResponse.NetworkSuccessResponse response) {
         return (CacheObject) response.getBody();
     }
 
@@ -176,7 +176,7 @@ public abstract class NetworkBoundResource<CacheObject, RequestObject> {
 
     // Called to create the API call.
     @NonNull @MainThread
-    protected abstract LiveData<RssResponse<RequestObject>> createCall();
+    protected abstract LiveData<NetworkResponse<RequestObject>> createCall();
 
     // Returns a LiveData object that represents the resource that's implemented in the base class.
     public final LiveData<Resource<CacheObject>> getAsLiveData(){

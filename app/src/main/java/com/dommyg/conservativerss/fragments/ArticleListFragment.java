@@ -17,7 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.dommyg.conservativerss.R;
 import com.dommyg.conservativerss.databinding.FragmentArticleListBinding;
 import com.dommyg.conservativerss.models.Article;
-import com.dommyg.conservativerss.models.Rss;
+import com.dommyg.conservativerss.requests.responses.RssResponse;
 import com.dommyg.conservativerss.requests.ServiceGenerator;
 import com.dommyg.conservativerss.viewmodels.ArticleListViewModel;
 
@@ -86,12 +86,12 @@ public class ArticleListFragment extends Fragment {
         new TestCallAsync().execute();
     }
 
-    private static class TestCallAsync extends AsyncTask<Void, Void, Response<Rss>> {
+    private static class TestCallAsync extends AsyncTask<Void, Void, Response<RssResponse>> {
 
         @Override
-        protected Response<Rss> doInBackground(Void... voids) {
+        protected Response<RssResponse> doInBackground(Void... voids) {
             try {
-                Call<Rss> rssCall = ServiceGenerator.getRssCall().getRss();
+                Call<RssResponse> rssCall = ServiceGenerator.getRssCall().getRss();
 
                 return rssCall.execute();
             } catch (IOException e) {
@@ -101,8 +101,8 @@ public class ArticleListFragment extends Fragment {
         }
 
         @Override
-        protected void onPostExecute(Response<Rss> rssResponse) {
-            Rss rss = rssResponse.body();
+        protected void onPostExecute(Response<RssResponse> rssResponse) {
+            RssResponse rss = rssResponse.body();
             System.out.println(rssResponse.code());
             for (Article article : rss.getChannel().getArticleList()) {
                 System.out.println(article.getTitle());
