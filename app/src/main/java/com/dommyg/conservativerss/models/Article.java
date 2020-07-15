@@ -3,17 +3,16 @@ package com.dommyg.conservativerss.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 // TODO: Update this description.
+
 /**
  * Holds information about each article that appears in the UI for a source. The title, author,
  * publication date, and summary are displayed in the UI. The URL is used in the onClickListener
@@ -25,7 +24,6 @@ import org.simpleframework.xml.Root;
 public class Article implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
-    @NonNull
     private int id;
 
     @ColumnInfo(name = "source_id")
@@ -37,7 +35,6 @@ public class Article implements Parcelable {
 
     @ColumnInfo(name = "author")
     @Element(name = "creator", required = false)
-//    @Namespace(reference = "http://purl.org/dc/elements/1.1/", prefix = "dc")
     private String author;
 
     @ColumnInfo(name = "date")
@@ -54,8 +51,7 @@ public class Article implements Parcelable {
 
     @ColumnInfo(name = "image")
     @Element(name = "enclosure", required = false)
-//    @Attribute(name = "url")
-    private String image;
+    private Image image;
 
     public Article() {
     }
@@ -119,15 +115,15 @@ public class Article implements Parcelable {
         this.url = url;
     }
 
-    public String getImage() {
+    public Image getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(Image image) {
         this.image = image;
     }
 
-    private Article(Parcel in) {
+    protected Article(Parcel in) {
         id = in.readInt();
         sourceId = in.readInt();
         title = in.readString();
@@ -135,7 +131,7 @@ public class Article implements Parcelable {
         date = in.readString();
         summary = in.readString();
         url = in.readString();
-        image = in.readString();
+        image = new Image(in.readString());
     }
 
     @Override
@@ -152,20 +148,42 @@ public class Article implements Parcelable {
         dest.writeString(date);
         dest.writeString(summary);
         dest.writeString(url);
-        dest.writeString(image);
+        dest.writeString(image.getImage());
     }
 
     @SuppressWarnings("unused")
-    public static final Parcelable.Creator<Article> CREATOR =
-            new Parcelable.Creator<Article>() {
-                @Override
-                public Article createFromParcel(Parcel in) {
-                    return new Article(in);
-                }
+    public static final Parcelable.Creator<Article> CREATOR = new Parcelable.Creator<Article>() {
+        @Override
+        public Article createFromParcel(Parcel in) {
+            return new Article(in);
+        }
 
-                @Override
-                public Article[] newArray(int size) {
-                    return new Article[size];
-                }
-            };
+        @Override
+        public Article[] newArray(int size) {
+            return new Article[size];
+        }
+    };
+
+    @Root
+    public static class Image {
+
+        @Attribute(name = "url")
+        private String image;
+
+        public Image() {
+
+        }
+
+        public Image(String image) {
+            this.image = image;
+        }
+
+        public String getImage() {
+            return image;
+        }
+
+        public void setImage(String image) {
+            this.image = image;
+        }
+    }
 }

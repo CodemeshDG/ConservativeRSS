@@ -17,7 +17,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.dommyg.conservativerss.R;
 import com.dommyg.conservativerss.databinding.FragmentArticleListBinding;
 import com.dommyg.conservativerss.models.Article;
-import com.dommyg.conservativerss.models.Channel;
 import com.dommyg.conservativerss.models.Rss;
 import com.dommyg.conservativerss.requests.ServiceGenerator;
 import com.dommyg.conservativerss.viewmodels.ArticleListViewModel;
