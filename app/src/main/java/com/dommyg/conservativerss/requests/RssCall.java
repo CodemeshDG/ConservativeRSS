@@ -1,13 +1,14 @@
 package com.dommyg.conservativerss.requests;
 
-import com.dommyg.conservativerss.models.Rss;
+import androidx.lifecycle.LiveData;
 
-import retrofit2.Call;
+import com.dommyg.conservativerss.requests.responses.NetworkResponse;
+import com.dommyg.conservativerss.requests.responses.RssResponse;
+
 import retrofit2.http.GET;
 
 public interface RssCall {
 
     @GET("feed/")
-    Call<Rss> getRss();
-//    LiveData<List<Article>> getArticles();
+    LiveData<NetworkResponse<RssResponse>> getRss();
 }

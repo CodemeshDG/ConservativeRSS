@@ -1,5 +1,7 @@
 package com.dommyg.conservativerss.requests;
 
+import com.dommyg.conservativerss.util.LiveDataCallAdapterFactory;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -10,7 +12,8 @@ import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 public class ServiceGenerator {
 
     // TODO: Remove this in final version.
-    private static HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
+    private static HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor()
+            .setLevel(HttpLoggingInterceptor.Level.BODY);
 
     private static OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)
@@ -23,7 +26,7 @@ public class ServiceGenerator {
     private static Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
             .baseUrl("https://thefederalist.com/")
             .client(client)
-//            .addCallAdapterFactory()
+            .addCallAdapterFactory(new LiveDataCallAdapterFactory())
             .addConverterFactory(SimpleXmlConverterFactory.createNonStrict());
 
     private static Retrofit retrofit = retrofitBuilder.build();
