@@ -3,6 +3,7 @@ package com.dommyg.conservativerss.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -164,10 +165,10 @@ public class Article implements Parcelable {
         }
     };
 
-    @Root
+    @Root(strict = false)
     public static class Image {
 
-        @Attribute(name = "url")
+        @Attribute(name = "url", required = false)
         private String image;
 
         public Image() {
