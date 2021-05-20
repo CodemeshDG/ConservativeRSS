@@ -2,6 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="article"
+            type="com.dommyg.conservativerss.models.Article" />
+    </data>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -24,6 +29,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                android:text="@{article.title}"
                 tools:text="List of Racist Statements by Members of the 'Squad' (So Far)"/>
 
             <com.google.android.material.textview.MaterialTextView
@@ -34,6 +40,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/article_title"
+                android:text="@{article.author}"
                 tools:text="by Joel B. Pollak"/>
 
             <com.google.android.material.textview.MaterialTextView
@@ -45,6 +52,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/article_author"
+                android:text="@{article.date}"
                 tools:text="Published Tue, 16 Jul 2019 21:11:45 +0000"/>
 
             <com.google.android.material.textview.MaterialTextView
@@ -59,6 +67,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/article_date"
                 app:layout_constraintVertical_bias="0.0"
+                android:text="@{article.summary}"
                 tools:text='The "Justice Democrats" are devoted to a specifically racial mission. Moreover, the four members of the "Squad" have a history of racist statements.'/>
 
             <ImageView

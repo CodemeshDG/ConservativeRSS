@@ -10,6 +10,7 @@ import androidx.room.PrimaryKey;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 // TODO: Update this description.
@@ -51,7 +52,7 @@ public class Article implements Parcelable {
     private String url;
 
     @ColumnInfo(name = "image")
-    @Element(name = "enclosure", required = false)
+    @ElementList(name = "enclosure", required = false, inline = true)
     private Image image;
 
     public Article() {

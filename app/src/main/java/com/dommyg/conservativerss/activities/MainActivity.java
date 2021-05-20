@@ -8,11 +8,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.dommyg.conservativerss.R;
+import com.dommyg.conservativerss.adapters.OnDisplayItemClickListener;
 import com.dommyg.conservativerss.databinding.ActivityMainBinding;
 import com.dommyg.conservativerss.fragments.ArticleListFragment;
 import com.dommyg.conservativerss.util.Constants;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnDisplayItemClickListener {
     private ActivityMainBinding binding;
 
     @Override
@@ -63,5 +64,25 @@ public class MainActivity extends AppCompatActivity {
             transaction.addToBackStack(fragmentTag);
         }
         transaction.commit();
+    }
+
+    @Override
+    public void onArticleClick(int position) {
+
+    }
+
+    @Override
+    public void onSourceHeaderClick(int position) {
+
+    }
+
+    @Override
+    public void onSourceMenuClick(int position) {
+
+    }
+
+    @Override
+    public void onSettingsMenuClick(int position) {
+
     }
 }

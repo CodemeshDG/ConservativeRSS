@@ -1,7 +1,7 @@
 package com.dommyg.conservativerss.fragments;
 
 import android.content.Context;
-import android.os.AsyncTask;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,26 +14,30 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.dommyg.conservativerss.R;
+import com.dommyg.conservativerss.activities.MainActivity;
+import com.dommyg.conservativerss.adapters.MultiRecyclerViewAdapter;
+import com.dommyg.conservativerss.adapters.OnDisplayItemClickListener;
 import com.dommyg.conservativerss.databinding.FragmentArticleListBinding;
 import com.dommyg.conservativerss.models.Article;
-import com.dommyg.conservativerss.requests.responses.RssResponse;
-import com.dommyg.conservativerss.requests.ServiceGenerator;
+import com.dommyg.conservativerss.util.MarginDecoration;
 import com.dommyg.conservativerss.util.Resource;
 import com.dommyg.conservativerss.viewmodels.ArticleListViewModel;
 
-import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Response;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static android.content.ContentValues.TAG;
 
 public class ArticleListFragment extends Fragment {
     private FragmentArticleListBinding binding;
     private ArticleListViewModel viewModel;
+    private MultiRecyclerViewAdapter adapter;
 
     @Nullable
     @Override
@@ -61,6 +65,7 @@ public class ArticleListFragment extends Fragment {
 
         subscribeObservers();
         binding.setFragment(this);
+        initRecyclerView();
     }
 
     @Override
@@ -79,9 +84,7 @@ public class ArticleListFragment extends Fragment {
                     if (listResource.status == Resource.Status.ERROR) {
                         Log.d(TAG, "onChanged: error message --- " + listResource.message);
                     } else if (listResource.data != null) {
-                        for (Article article : listResource.data) {
-                            Log.d(TAG, "onChanged: " + article.toString());
-                        }
+                        adapter.setDisplayItems((List)listResource.data);
                     }
                 }
             }
@@ -102,6 +105,22 @@ public class ArticleListFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void initRecyclerView() {
+        RecyclerView recyclerView = binding.recyclerViewArticles;
+        adapter = new MultiRecyclerViewAdapter((MainActivity)getActivity());
+
+        // Sets ItemDecoration to give space between items in the recyclerViewArticles.
+        Drawable divider = Objects.requireNonNull(
+                getActivity()).getDrawable(R.drawable.divider_white);
+        MarginDecoration decoration = new MarginDecoration(divider);
+        recyclerView.addItemDecoration(decoration);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        // TODO: Add Glide image handling configuration code here.
+
+        recyclerView.setAdapter(adapter);
     }
 
     public void testApiCall() {
